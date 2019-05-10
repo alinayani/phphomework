@@ -3,13 +3,15 @@
 $nameError ="";
 $emailError ="";
 $websiteError ="";
+$name = $web = $email = "";
 // This code block will execute when form is submitted
 if(isset($_POST['submit'])){
 	/*--------------------------------------------------------------
 	Fetch name value from URL and Sanitize it
 	--------------------------------------------------------------*/
 	if($_POST['name'] != ""){
-	// Sanitizing name value of type string
+		$name = $_POST['name'];
+		// Sanitizing name value of type string
 		$_POST['name'] = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 		$nameError = "<span class='valid'>".$_POST['name']." </span>is Sanitized and Valid name.";
 		if ($_POST['name'] == ""){
@@ -22,6 +24,7 @@ if(isset($_POST['submit'])){
 	Fetch email value from URL, Sanitize and Validate it
 	--------------------------------------------------------------------*/
 	if($_POST['email'] != ""){
+		$email = $_POST['email'];
 		//sanitizing email
 		$_POST['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		//After sanitization Validation is performed
@@ -37,6 +40,7 @@ if(isset($_POST['submit'])){
 	Fetch website value from URL, Sanitize and Validate it
 	----------------------------------------------------------------------------*/
 	if($_POST['website'] != ""){
+		$web = $_POST['website'];
 		//sanitizing URL
 		$_POST['website'] = filter_var($_POST['website'], FILTER_SANITIZE_URL);
 		//After sanitization Validation is performed
@@ -66,16 +70,23 @@ if(isset($_POST['submit'])){
 </div>
 <form action="sanitization.php" method="post">
 <h2>Form</h2>
+
 <p>* Required Fields</p>
+
 Name: <span class="invalid">*</span>
-<input class="input" name="name" type="text" value="">
+<input class="input" name="name" type="text" value="<?php echo $name; ?>">
 <p><?php echo $nameError;?></p>
+
 E-mail: <span class="invalid">*</span>
-<input class="input" name="email" type="text" value="">
+<input class="input" name="email" type="text" value="<?php echo $email; ?>">
 <p><?php echo $emailError;?></p>
+
 Website: <span class="invalid">*</span>
-<input class="input" name="website" type="text" value="">
-<p><?php echo $websiteError;?></p><input class="submit" name="submit" type="submit" value="Submit">
+<input class="input" name="website" type="text" value="<?php echo $web; ?>">
+<p><?php echo $websiteError;?></p>
+
+<input class="submit" name="submit" type="submit" value="Submit">
+
 </form>
 </div>
 </div> <!-- HTML Ends Here -->
