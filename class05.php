@@ -3,6 +3,7 @@
 // indexed array but giving indexes by ourself
 
 $anotherone = $confusion = array(10 => 'ten', 11 => 'eleven', 12 => 'twelve');
+
 echo "indexed array before adding a new element <br><br>";
 var_dump($confusion);
 echo "<br><br>";
